@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Choose side project</title>
+        <!-- CSS file and bootstrap -->
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- Google fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet"> 
+
+
+        <h2 style="font-family: 'Kumbh Sans', sans-serif;">Side project dashboard</h2>
+    </head>
+    <body>
+        <div class="dashboard">
+            <div id='block1' class="block" onmouseover="squareShrink(this, 'inner-block1')"  onmouseleave="SquareNormalling(this, 'inner-block1')">
+                <div  id='inner-block1' class="inner-block"></div>
+            </div>
+            <div id='block2' class="block" onmouseover="squareShrink(this, 'inner-block2')" onmouseleave="SquareNormalling(this, 'inner-block2')">
+                <div  id='inner-block2' class="inner-block" ></div>
+            </div>
+            <div id='block3'  class="block" onmouseover="squareShrink(this, 'inner-block3')" onmouseleave="SquareNormalling(this, 'inner-block3')">
+                <div  id='inner-block3' class="inner-block"></div>
+            </div>
+            <div id='block4' class="block" onmouseover="squareShrink(this, 'inner-block4')" onmouseleave="SquareNormalling(this, 'inner-block4')">
+                <div  id='inner-block4' class="inner-block" ></div>
+            </div>
+            <div id='block5' class="block" onmouseover="squareShrink(this, 'inner-block5')" onmouseleave="SquareNormalling(this, 'inner-block5')">
+                <div  id='inner-block5' class="inner-block" ></div>
+            </div>
+
+        </div>
+
+        <script>
+
+            // Initialise variable newWidth to the width of inner square.
+            var newWidth = document.getElementById('inner-block1').offsetWidth;
+
+
+            // Get width of parent square
+            var parentWidth = document.getElementById('block1').offsetWidth;
+            
+
+
+            // Variables for setInterval functions
+            var t;
+            var r;
+            
+
+          
+
+            function squareShrink(obj, childID){
+                // ClearInterval to prevent stutter
+                clearInterval(r);
+                clearInterval(t);
+                
+                mySquare = document.getElementById(childID); //Inner square
+                
+
+                // Reduce the width and height smoothly 
+                function shrink(){
+                    // Stop transition here 
+                    if (newWidth <(parentWidth*0.6)){
+                        clearInterval(r)
+                        return newWidth;
+
+                    }
+                    // Update width and height of inner square
+                    mySquare.style.width=(newWidth)+'px';
+                    mySquare.style.height=(newWidth)+'px';
+                    
+                    // Update width counter
+                    newWidth = newWidth - 10;
+
+                }
+                // Start shrinking
+                r=setInterval(shrink, 20)   
+                     
+                
+            }
+            
+            function SquareNormalling(obj, childID) {
+                // call clearInterval functions to prevent animation stutter
+                clearInterval(r);
+                clearInterval(t);
+                
+                mySquare = document.getElementById(childID); // Inner square
+
+    
+                // Expand the width and height smoothly 
+                function expand(){
+                    // Stop expanding here
+                    if (newWidth >(0.98*parentWidth)){
+                        clearInterval(t)
+                        return newWidth;
+
+                    }
+                    // Update width and height of inner square
+                    mySquare.style.width=(newWidth)+'px';
+                    mySquare.style.height=(newWidth)+'px';
+                    
+                    // Increment width variable
+                    newWidth = newWidth + 10;
+
+                }
+                //Start expanding
+                t=setInterval(expand, 20) 
+            }
+            
+
+           
+
+
+        </script>
+    </body>
+</html>
